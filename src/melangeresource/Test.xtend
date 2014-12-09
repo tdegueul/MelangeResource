@@ -14,25 +14,26 @@ import melangefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter
 class Test
 {
 	def static void main(String[] args) {
-		register()
-		
-		try {
-			//val uri = "melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT"
-			val uri = "melange:/resource/MelangeResource/input/Simple.timedfsm?mt=FsmMT"
-			val rs = new ResourceSetImpl
-			val res = rs.getResource(URI.createURI(uri), true)
-			val root = res.contents.head as FSM
+		register
 
-			// Using generic API
-			println("root.owned = " + root.ownedState.map[name].join(", "))
-			println("root.trans = " + root.ownedState.map[outgoingTransition].flatten.map[input].join(", "))
+		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT")		
+		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.timedfsm?mt=FsmMT")
+	}
+
+	// Will work for both FSM and TimedFSM metamodels
+	def static void doSomethingWithGenericFsm(String uri) {
+		val rs = new ResourceSetImpl
+		val res = rs.getResource(URI.createURI(uri), true)
+		val fsm = res.contents.head as FSM
 			
-			// Invoking generic transformation
-			// Cannot at the moment because no in-the-large container :(
-			//melangefsm.myTransfo::call(root)
-		} catch (Exception e) {
-			e.printStackTrace
-		}
+		// Using generic API
+		println("root.owned = " + fsm.ownedState.map[name].join(", "))
+		println("root.trans = " + fsm.ownedState.map[outgoingTransition].flatten.map[input].join(", "))
+		
+		// Invoking generic transformation
+		// Cannot at the moment because no in-the-large container :(
+		// (in Melange, transfo are typed by the MM/MT themselves, not the root element)
+		//melangefsm.myTransfo::call(fsm)
 	}
 	
 	def static void register() {
