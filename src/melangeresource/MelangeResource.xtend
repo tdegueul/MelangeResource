@@ -13,7 +13,7 @@ class MelangeResourceFactory implements Resource.Factory
 		val mt = uri.query.split("=").get(1)
 		val wrappedUri = uri.toString.replaceFirst("melange:/resource", "..")
 		val y = wrappedUri.substring(0, wrappedUri.lastIndexOf("?"))
-		
+
 		return new MelangeResource(URI.createFileURI(y), mt)
 	}
 }
@@ -28,23 +28,23 @@ class MelangeResource extends XMIResourceImpl
 		expectedMT = mt
 		println("Loading " + uri + " as " + mt)
 	}
-	
+
 	override getContents() {
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI::createFileURI(uri.toString), true)
 		val actualPkgUri = res.contents.head.eClass.EPackage.nsURI
 		val pair = actualPkgUri -> expectedMT
 		val adapterCls = ModelType.Registry.INSTANCE.get(pair)
-		
+
 		if (adapterCls === null)
 			throw new MelangeResourceException("Cannot find adapter class for " + pair + " in the registry.")
-		
+
 		val adapter = adapterCls.newInstance as GenericAdapter<Resource>
 
 		adapter.adaptee = res
-		
+
 		val adapContents = (adapter as ModelType).contents
-		
+
 		return (adapter as ModelType).contents
 	}
 }

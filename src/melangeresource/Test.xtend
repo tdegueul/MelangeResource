@@ -16,7 +16,7 @@ class Test
 	def static void main(String[] args) {
 		register
 
-		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT")		
+		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT")
 		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.timedfsm?mt=FsmMT")
 	}
 
@@ -25,17 +25,17 @@ class Test
 		val rs = new ResourceSetImpl
 		val res = rs.getResource(URI.createURI(uri), true)
 		val fsm = res.contents.head as FSM
-			
+
 		// Using generic API
 		println("root.owned = " + fsm.ownedState.map[name].join(", "))
 		println("root.trans = " + fsm.ownedState.map[outgoingTransition].flatten.map[input].join(", "))
-		
+
 		// Invoking generic transformation
 		// Cannot at the moment because no in-the-large container :(
 		// (in Melange, transfo are typed by the MM/MT themselves, not the root element)
 		//melangefsm.myTransfo::call(fsm)
 	}
-	
+
 	def static void register() {
 		// Legacy EMF registration
 		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(
@@ -50,7 +50,7 @@ class Test
 			"timedfsm",
 			new XMIResourceFactoryImpl
 		)
-		
+
 		EPackage.Registry.INSTANCE.put(FsmPackage.eNS_URI, FsmPackage.eINSTANCE)
 		EPackage.Registry.INSTANCE.put(TimedfsmPackage.eNS_URI, TimedfsmPackage.eINSTANCE)
 
