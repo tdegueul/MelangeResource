@@ -1,26 +1,24 @@
 package melangeresource
 
-import mymetamodel.MymetamodelPackage
+import fsm.FsmPackage
+import melangefsm.fsm.adapters.fsmmt.FsmAdapter
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl
+import timedfsm.TimedfsmPackage
 
 class MelangeResourceFactory implements Resource.Factory
 {
-	new() {
-		super()
-	}
-
 	override Resource createResource(URI uri) {
 		val mt = uri.query.split("=").get(1)
 		println("Loading " + uri.lastSegment + " as " + mt)
 		
 		//val legacyUri = uri.toString.replaceFirst("melange:/resource", "")
 		// Properly convert from melange:/ to EMF URIs
-		return new MelangeResource(URI.createFileURI("../MelangeResource/input/Foo.xmi"))
+		return new MelangeResource(URI.createFileURI("../MelangeResource/input/Simple.fsm"))
 	}
 }
 
@@ -32,18 +30,12 @@ class MelangeResource extends XMIResourceImpl
 	}
 	
 	override getContents() {
-		// Call here the appropriate adapter's getContents()
-		/*val ret = new BasicInternalEList<EObject>(EObject)
+		val rs = new ResourceSetImpl
+		val res = rs.getResource(URI::createFileURI("../MelangeResource/input/Simple.fsm"), true)
+		val melangeAdap = new FsmAdapter
+		melangeAdap.adaptee = res
 		
-		// Assuming there's only A as root
-		super.getContents.forEach[
-			val adap = new AAdapter(it as mymetamodel.A)
-			println("Adding adap = " + adap)
-			ret += adap
-		]
-		
-		return ret*/
-		return super.getContents
+		return melangeAdap.contents
 	}
 }
 
@@ -53,11 +45,18 @@ class Test
 		register()
 		
 		try {
-			val uri = "melange:/resource/MelangeResource/input/Foo.xmi?mt=MyMT"
+			val uri = "melange:/resource/MelangeResource/input/Simple.fsm?mt=MyMT"
 			val rs = new ResourceSetImpl
 			val res = rs.getResource(URI.createURI(uri), true)
+			val root = res.contents.head as melangefsm.fsmmt.FSM
+
+			// Using generic API
+			println("root.owned = " + root.ownedState.map[name].join(", "))
+			println("root.trans = " + root.ownedState.map[outgoingTransition].flatten.map[input].join(", "))
 			
-			println("o = " + res.contents.head)
+			// Invoking generic transformation
+			// Cannot at the moment because no in-the-large container :(
+			//melangefsm.myTransfo::call(root)
 		} catch (Exception e) {
 			e.printStackTrace
 		}
@@ -72,7 +71,16 @@ class Test
 			"xmi",
 			new XMIResourceFactoryImpl
 		)
+		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(
+			"fsm",
+			new XMIResourceFactoryImpl
+		)
+		Resource.Factory.Registry.INSTANCE.extensionToFactoryMap.put(
+			"timedfsm",
+			new XMIResourceFactoryImpl
+		)
 		
-		EPackage.Registry.INSTANCE.put(MymetamodelPackage.eNS_URI, MymetamodelPackage.eINSTANCE)
+		EPackage.Registry.INSTANCE.put(FsmPackage.eNS_URI, FsmPackage.eINSTANCE)
+		EPackage.Registry.INSTANCE.put(TimedfsmPackage.eNS_URI, TimedfsmPackage.eINSTANCE)
 	}
 }
