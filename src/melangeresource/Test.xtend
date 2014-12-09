@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import timedfsm.TimedfsmPackage
+import melangefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter
 
 class Test
 {
@@ -16,7 +17,8 @@ class Test
 		register()
 		
 		try {
-			val uri = "melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT"
+			//val uri = "melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT"
+			val uri = "melange:/resource/MelangeResource/input/Simple.timedfsm?mt=FsmMT"
 			val rs = new ResourceSetImpl
 			val res = rs.getResource(URI.createURI(uri), true)
 			val root = res.contents.head as FSM
@@ -59,5 +61,6 @@ class Test
 
 		// EMF-style registry for model types...
 		ModelType.Registry.INSTANCE.put(FsmPackage.eNS_URI -> "FsmMT", FsmAdapter)
+		ModelType.Registry.INSTANCE.put(TimedfsmPackage.eNS_URI -> "FsmMT", TimedFsmAdapter)
 	}
 }

@@ -43,6 +43,8 @@ class MelangeResource extends XMIResourceImpl
 
 		adapter.adaptee = res
 		
+		val adapContents = (adapter as ModelType).contents
+		
 		return (adapter as ModelType).contents
 	}
 }
