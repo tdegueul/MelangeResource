@@ -16,8 +16,8 @@ class Test
 	def static void main(String[] args) {
 		register
 
-		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.fsm?mt=FsmMT")
-		doSomethingWithGenericFsm("melange:/resource/MelangeResource/input/Simple.timedfsm?mt=FsmMT")
+		doSomethingWithGenericFsm("melange:/resource/fr.inria.diverse.melange.resource/input/Simple.fsm?mt=FsmMT")
+		doSomethingWithGenericFsm("melange:/resource/fr.inria.diverse.melange.resource/input/Simple.timedfsm?mt=FsmMT")
 	}
 
 	// Will work for both FSM and TimedFSM metamodels
