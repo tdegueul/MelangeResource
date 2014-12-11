@@ -1,6 +1,5 @@
 package fr.inria.diverse.melange.resource
 
-import fr.inria.diverse.k3.sle.lib.GenericAdapter
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -40,13 +39,9 @@ class MelangeResource extends XMIResourceImpl
 			throw new MelangeResourceException("Cannot find adapter class for " + pair + " in the registry.")
 
 		try {
-			val adapter = adapterCls.newInstance
-			adapter.adaptee = res
+			val adapter = adapterCls.newInstance => [adaptee = res]
 
-			if (!(adapter instanceof ModelType))
-				throw new MelangeResourceException("Bad adapter type " + adapterCls + ". Cannot be cast to ModelType.")
-
-			return (adapter as ModelType).contents
+			return adapter.contents
 		} catch (InstantiationException e) {
 			// ...
 			e.printStackTrace

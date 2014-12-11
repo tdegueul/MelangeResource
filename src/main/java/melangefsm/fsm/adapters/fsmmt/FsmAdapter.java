@@ -1,6 +1,7 @@
 package melangefsm.fsm.adapters.fsmmt;
 
 import fr.inria.diverse.k3.sle.lib.GenericAdapter;
+import fr.inria.diverse.k3.sle.lib.ResourceAdapter;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,17 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 
 @SuppressWarnings("all")
-public class FsmAdapter implements GenericAdapter<Resource>, FsmMT {
-  private Resource adaptee;
-  
-  public Resource getAdaptee() {
-    return this.adaptee;
-  }
-  
-  public void setAdaptee(final Resource adaptee) {
-    this.adaptee = adaptee;
-  }
-  
+public class FsmAdapter extends ResourceAdapter implements FsmMT {
   private FsmMTAdaptersFactory adaptersFactory = melangefsm.fsm.adapters.fsmmt.FsmMTAdaptersFactory.getInstance();
   
   public EList<EObject> getContents() {
