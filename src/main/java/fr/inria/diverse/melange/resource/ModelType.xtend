@@ -22,7 +22,7 @@ interface ModelType
 	static class ModelTypeRegistryImpl extends HashMap<Pair<String, String>, Class<? extends GenericAdapter<Resource>>> implements ModelType.Registry {
 		static ModelType.Registry instance
 
-		def static getInstance() {
+		def static ModelType.Registry getInstance() {
 			if (instance === null)
 				instance = new ModelTypeRegistryImpl
 

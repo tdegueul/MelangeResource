@@ -39,13 +39,23 @@ class MelangeResource extends XMIResourceImpl
 		if (adapterCls === null)
 			throw new MelangeResourceException("Cannot find adapter class for " + pair + " in the registry.")
 
-		val adapter = adapterCls.newInstance as GenericAdapter<Resource>
+		try {
+			val adapter = adapterCls.newInstance
+			adapter.adaptee = res
 
-		adapter.adaptee = res
+			if (!(adapter instanceof ModelType))
+				throw new MelangeResourceException("Bad adapter type " + adapterCls + ". Cannot be cast to ModelType.")
 
-		val adapContents = (adapter as ModelType).contents
+			return (adapter as ModelType).contents
+		} catch (InstantiationException e) {
+			// ...
+			e.printStackTrace
+		} catch (IllegalAccessException e) {
+			// ...
+			e.printStackTrace
+		}
 
-		return (adapter as ModelType).contents
+		return null
 	}
 }
 
