@@ -5,19 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import melangefsm.timedfsm.adapters.fsmmt.FsmMTAdaptersFactory;
 import melangefsm.fsmmt.State;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-
 import fr.inria.diverse.k3.sle.lib.EObjectAdapter;
 import fr.inria.diverse.k3.sle.lib.GenericAdapter;
 import timedfsm.Transition;

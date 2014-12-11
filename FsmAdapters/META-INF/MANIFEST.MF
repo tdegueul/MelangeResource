@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FsmAdapters
+Bundle-SymbolicName: FsmAdapters
+Bundle-Version: 0.1.0.qualifier
+Export-Package: melangefsm,
+ melangefsm.fsm.adapters.fsmmt,
+ melangefsm.fsmmt,
+ melangefsm.timedfsm.adapters.fsmmt
+Require-Bundle: fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
+ fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
+ fr.inria.diverse.k3.sle.lib;bundle-version="3.1.0",
+ org.eclipse.emf.ecore;bundle-version="2.10.1",
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.7.3"

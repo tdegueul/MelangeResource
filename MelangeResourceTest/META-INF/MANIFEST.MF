@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MelangeResourceTest
+Bundle-SymbolicName: MelangeResourceTest
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: FsmAdapters;bundle-version="0.1.0",
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.emf.codegen.ecore;bundle-version="2.10.2",
+ fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
+ fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
+ fr.inria.diverse.melange.resource;bundle-version="0.1.0",
+ fr.inria.diverse.k3.sle.lib;bundle-version="3.1.0"
+

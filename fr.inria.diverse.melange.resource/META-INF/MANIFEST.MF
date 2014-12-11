@@ -3,14 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: fr.inria.diverse.melange.resource
 Bundle-SymbolicName: fr.inria.diverse.melange.resource;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Export-Package: fr.inria.diverse.melange.resource,
- melangefsm,
- melangefsm.fsm.adapters.fsmmt,
- melangefsm.fsmmt,
- melangefsm.timedfsm.adapters.fsmmt
+Export-Package: fr.inria.diverse.melange.resource
 Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="2.10.1",
- fr.inria.diverse.k3.sle.examples.metamodels.fsm;bundle-version="0.1.0",
- fr.inria.diverse.k3.sle.examples.metamodels.timedfsm;bundle-version="0.1.0",
  fr.inria.diverse.k3.sle.lib;bundle-version="3.1.0",
  org.eclipse.emf.common,
  org.eclipse.emf.ecore

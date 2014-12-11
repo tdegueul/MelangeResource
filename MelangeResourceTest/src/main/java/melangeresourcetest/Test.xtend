@@ -1,23 +1,25 @@
-package fr.inria.diverse.melange.resource
+package melangeresourcetest
 
+import fr.inria.diverse.melange.resource.ModelType
 import fsm.FsmPackage
 import melangefsm.fsm.adapters.fsmmt.FsmAdapter
 import melangefsm.fsmmt.FSM
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import timedfsm.TimedfsmPackage
 import melangefsm.timedfsm.adapters.fsmmt.TimedFsmAdapter
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import timedfsm.TimedfsmPackage
+import org.eclipse.emf.ecore.resource.Resource
+import fr.inria.diverse.melange.resource.MelangeResourceFactory
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.emf.ecore.EPackage
 
 class Test
 {
 	def static void main(String[] args) {
 		register
 
-		doSomethingWithGenericFsm("melange:/resource/fr.inria.diverse.melange.resource/input/Simple.fsm?mt=FsmMT")
-		doSomethingWithGenericFsm("melange:/resource/fr.inria.diverse.melange.resource/input/Simple.timedfsm?mt=FsmMT")
+		doSomethingWithGenericFsm("melange:/resource/MelangeResourceTest/input/Simple.fsm?mt=FsmMT")
+		doSomethingWithGenericFsm("melange:/resource/MelangeResourceTest/input/Simple.timedfsm?mt=FsmMT")
 	}
 
 	// Will work for both FSM and TimedFSM metamodels
