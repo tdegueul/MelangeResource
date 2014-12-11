@@ -1,4 +1,4 @@
-package melangeresource
+package fr.inria.diverse.melange.resource
 
 import fsm.FsmPackage
 import melangefsm.fsm.adapters.fsmmt.FsmAdapter

@@ -1,4 +1,4 @@
-package melangeresource
+package fr.inria.diverse.melange.resource
 
 import java.util.Map
 import java.util.HashMap

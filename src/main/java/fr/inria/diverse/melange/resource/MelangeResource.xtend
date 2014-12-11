@@ -1,4 +1,4 @@
-package melangeresource
+package fr.inria.diverse.melange.resource
 
 import fr.inria.diverse.k3.sle.lib.GenericAdapter
 import org.eclipse.emf.common.util.URI
